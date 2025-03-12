@@ -1,8 +1,8 @@
+using VestasTestChallenge.Classes;
+
 namespace VestasTestChallenge.Interfaces;
 
 public interface ITestSimulator
 {
-    void Test();
-    
-    
+    List<TestResult> StartTest(List<TestStep> steps);
 }
