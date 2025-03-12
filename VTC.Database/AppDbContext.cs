@@ -9,9 +9,12 @@ public class AppDbContext : DbContext
     public DbSet<TestResult> TestResults { get; set; }
     public DbSet<Test> Tests { get; set; }
 
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=vtc_data.db");
+        // TODO Fix path
+        var path = "/Users/Gui/RiderProjects/VestasTestChallenge/VTC.Database/vtc_data.db";
+        optionsBuilder.UseSqlite($"Data Source={path}");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

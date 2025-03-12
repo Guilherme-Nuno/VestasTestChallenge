@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using VTC.Database.Interfaces;
 using VTC.Database.Models;
 
@@ -9,7 +10,7 @@ public class DatabaseConnection : IDatabaseConnection
 
     public DatabaseConnection(AppDbContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
     
     public async Task<Test> AddTestAsync(String name, Guid id)
