@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "VTC.BusinessLayer/1.0.0": {
+        "runtime": {
+          "VTC.BusinessLayer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VTC.BusinessLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

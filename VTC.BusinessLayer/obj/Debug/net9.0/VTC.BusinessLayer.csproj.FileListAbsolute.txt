@@ -1,0 +1,14 @@
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/bin/Debug/net9.0/VTC.BusinessLayer
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/bin/Debug/net9.0/VTC.BusinessLayer.deps.json
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/bin/Debug/net9.0/VTC.BusinessLayer.runtimeconfig.json
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/bin/Debug/net9.0/VTC.BusinessLayer.dll
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/bin/Debug/net9.0/VTC.BusinessLayer.pdb
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.AssemblyInfoInputs.cache
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.AssemblyInfo.cs
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.csproj.CoreCompileInputs.cache
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.dll
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/refint/VTC.BusinessLayer.dll
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.pdb
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/VTC.BusinessLayer.genruntimeconfig.cache
+/Users/Gui/RiderProjects/VestasTestChallenge/VTC.BusinessLayer/obj/Debug/net9.0/ref/VTC.BusinessLayer.dll
