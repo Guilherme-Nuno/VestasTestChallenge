@@ -1,8 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VTC.BusinessLayer", "VTC.BusinessLayer\VTC.BusinessLayer.csproj", "{0D940CAB-7635-44C5-B363-89BF2C86911C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D34887A0-5FD7-41CE-98EC-67BFF40282EF} = {D34887A0-5FD7-41CE-98EC-67BFF40282EF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VTC.BlazorUI", "VTC.BlazorUI\VTC.BlazorUI.csproj", "{AED6EB9B-C16A-4624-919E-9EA5C282D903}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D34887A0-5FD7-41CE-98EC-67BFF40282EF} = {D34887A0-5FD7-41CE-98EC-67BFF40282EF}
+		{0D940CAB-7635-44C5-B363-89BF2C86911C} = {0D940CAB-7635-44C5-B363-89BF2C86911C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VTC.Database", "VTC.Database\VTC.Database.csproj", "{D34887A0-5FD7-41CE-98EC-67BFF40282EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +27,9 @@ Global
 		{AED6EB9B-C16A-4624-919E-9EA5C282D903}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED6EB9B-C16A-4624-919E-9EA5C282D903}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AED6EB9B-C16A-4624-919E-9EA5C282D903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

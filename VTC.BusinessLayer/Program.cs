@@ -3,10 +3,23 @@
 using VestasTestChallenge;
 using VestasTestChallenge.Classes;
 
-var testSteps = new List<TestStep>();
-testSteps.Add(new TestStep(new Guid(), new Guid(), 1500, 15));
+using Microsoft.Extensions.DependencyInjection;
+using VTC.Database.Interfaces;
+using VTC.Database;
 
-var testSimulator = new TestSimulator();
+var serviceProvider = new ServiceCollection()
+    .AddScoped<IDatabaseConnection, DatabaseConnection>()
+    .BuildServiceProvider();
+
+var databaseConnection = serviceProvider.GetService<IDatabaseConnection>();
+    
+var testSteps = new List<TestStep>();
+var testId = Guid.NewGuid();
+
+testSteps.Add(new TestStep(testId, new Guid(), 1500, 15));
+testSteps.Add(new TestStep(testId, new Guid(), 2500, 7));
+
+var testSimulator = new TestSimulator(databaseConnection);
 var results = testSimulator.StartTest(testSteps);
 
 

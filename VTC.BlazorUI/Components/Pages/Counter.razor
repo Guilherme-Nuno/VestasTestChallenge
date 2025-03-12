@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@using VTC.BlazorUI.Classes
 @rendermode InteractiveServer
 
 <PageTitle>Counter</PageTitle>
@@ -7,10 +8,20 @@
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>\
+
+<button class="btn btn-primary" @onclick="AddRow">Add Row</button>
 
 @code {
     private int currentCount = 0;
+    private List<TestSequenceStep> TestSequence = new List<TestSequenceStep>();
+    
+    private void AddRow()
+    {
+        TestSequence.Add(new TestSequenceStep());
+        Console.WriteLine($"Added step, count is now: {TestSequence.Count}");
+        StateHasChanged();
+    }
 
     private void IncrementCount()
     {

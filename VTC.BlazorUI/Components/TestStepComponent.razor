@@ -1,0 +1,22 @@
+@using VTC.BlazorUI.Classes
+@inherits Microsoft.AspNetCore.Components.ComponentBase
+
+<div class="form-control" style="display: flex">
+    <label for="setpoint">Rotation</label>
+    <input type="number" id="setpoint" class="form-control" @bind="step.SetPoint" placeholder="SetPoint (Rotation)" />
+
+    <label for="duration">Duration</label>
+    <input type="number" id="duration" class="form-control" @bind="step.Duration" placeholder="Duration (Seconds)" />
+    
+    <button class="btn btn-danger" @onclick="DeleteTestStep">Delete</button>
+</div>
+
+@code {
+    [Parameter] public TestSequenceStep step { set; get; }
+    [Parameter] public EventCallback<TestSequenceStep> OnDelete { get; set; }
+
+    private void DeleteTestStep()
+    {
+        OnDelete.InvokeAsync(step);
+    }
+}

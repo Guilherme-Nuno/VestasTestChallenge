@@ -1,16 +1,19 @@
-using System.Security.Cryptography;
 using VestasTestChallenge.Classes;
 using VestasTestChallenge.Interfaces;
 
 namespace VestasTestChallenge;
 
+using VTC.Database.Interfaces;
+
 public class TestSimulator : ITestSimulator
 {
+    private IDatabaseConnection _dbConnection;
     private List<TestResult> _results;
 
-    public TestSimulator()
+    public TestSimulator(IDatabaseConnection dbConnection)
     {
         _results = new List<TestResult>();
+        _dbConnection =  dbConnection;
     }
     public List<TestResult> StartTest(List<TestStep> steps)
     {

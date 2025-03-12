@@ -1,7 +1,47 @@
 ﻿@page "/"
+@using VTC.BlazorUI.Classes
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>VTC Test Bench</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Welcome to the Test Bench Application</h1>
 
-Welcome to your new app.
+<button class="btn btn-primary" @onclick="AddRow">Add Row</button>
+
+
+<div style="margin: 5px; padding: 5px;">
+    @foreach (var step in TestSequence)
+    {
+        <TestStepComponent step="step" OnDelete="DeleteRow" @key="step"/>
+    }
+</div>
+
+<div>
+    <button class="btn btn-primary" @onclick="StartTest">Start Test</button>
+</div>
+
+@code {
+    private List<TestSequenceStep> TestSequence = new List<TestSequenceStep>();
+    
+    private void AddRow()
+    {
+        TestSequence.Add(new TestSequenceStep());
+        Console.WriteLine($"Added step, count is now: {TestSequence.Count}");
+        StateHasChanged();
+    }
+
+    private void DeleteRow(TestSequenceStep step)
+    {
+        TestSequence.Remove(step);
+        StateHasChanged();
+    }
+
+    private void StartTest()
+    {
+        foreach (var step in TestSequence)
+        {
+            Console.WriteLine($"Starting test with: {step.SetPoint} and for {step.Duration}");
+        }
+    }
+
+}
