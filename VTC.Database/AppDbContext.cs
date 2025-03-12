@@ -16,14 +16,18 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Test>()
-            .HasMany(t => t.TestSteps)
-            .WithOne()
-            .HasForeignKey(ts => ts.TestId);
+        base.OnModelCreating(modelBuilder);
         
-        modelBuilder.Entity<Test>()
-            .HasMany(t => t.TestResults)
-            .WithOne()
-            .HasForeignKey(r => r.TestId);
+        modelBuilder.Entity<TestStep>()
+            .HasOne(ts => ts.Test)  
+            .WithMany(t => t.TestSteps)  
+            .HasForeignKey(ts => ts.TestId)  
+            .OnDelete(DeleteBehavior.Cascade); 
+        
+        modelBuilder.Entity<TestResult>()
+            .HasOne(tr => tr.Test)
+            .WithMany(t => t.TestResults)
+            .HasForeignKey(tr => tr.TestId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

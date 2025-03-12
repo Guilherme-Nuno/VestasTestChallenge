@@ -18,7 +18,10 @@ public class DatabaseConnection : IDatabaseConnection
         {
             Name = name,
             Id = id,
-            StartTime = DateTime.UtcNow
+            StartTime = DateTime.UtcNow,
+            
+            TestSteps = new List<TestStep>(), 
+            TestResults = new List<TestResult>()
         };
         
         _context.Tests.Add(test);
