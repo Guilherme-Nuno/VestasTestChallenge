@@ -31,7 +31,7 @@ The application allows users to define test sequences, execute them, and visuali
 5. **Open the browser**
    Navigate to
    ```sh
-   `http://localhost:5291`
+   http://localhost:5291
    ```
 
 ## Limitations & Assumptions
