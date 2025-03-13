@@ -1,0 +1,51 @@
+# Device Testing Platform  
+
+This software prototype was designed as a modular **Blazor Server** application to manage and visualize test sequences for a mechanical test bench that tests a **rotating bending main bearing arrangement**. The focus was on creating a structured, scalable system.  
+
+## System Components  
+
+The system consists of the following components:  
+
+- **Blazor Server UI (VTC.BlazorUI):**  
+  Handles user interaction and result visualization using tables and charts. Sends user input to the test simulator for processing.  
+
+- **Test Simulator (VTC.BusinessLayer):**  
+  Processes test sequences and generates results. At this moment, they are mostly randomized.  
+
+- **Database Module (VTC.Database):**  
+  Responsible for all database interactions. Receives the results from the simulator, stores them in an **SQLite database**, and sends the results to the Blazor UI through a **SignalR hub**.  
+
+- **Shared Module (VTC.Shared):**  
+  A shared module to house common classes and **Data Transfer Objects (DTOs)**.  
+
+## Design Approach  
+
+The primary goal was to keep all modules **separate and loosely connected**, assuming a future migration to a cloud service. All communication between the modules is done using either **SignalR** or **Interfaces with dependency injection**.  
+
+- **SignalR** was chosen for communication between the database and the UI to enable **real-time data streaming** for visualization.  
+- **SQLite** was chosen for its **simplicity and ease of use**.  
+
+## Challenges Faced  
+
+Most of the implementation was straightforward, but there were notable challenges:  
+
+- **Limited knowledge of C# and .NET:**  
+  - Learning the **.NET environment** was a key challenge.  
+- **Dependency Injection:**  
+  - Had never used it before, so it required extra effort to understand and implement properly.  
+- **Blazor UI and Chart Integration:**  
+  - The biggest time-consuming task was integrating charts.  
+  - Research and experimentation led to a solution.  
+  - Used the **Rider IDE template** to simplify the setup and focus on components.  
+
+## Scaling to an Azure Cloud Service  
+
+Several steps are necessary to deploy the prototype to a cloud service:  
+
+- **Database Migration:** Move from **SQLite** to **Azure SQL Database**.  
+- **Communication Improvements:** Ensure all inter-module communication is handled by **SignalR** for full modularity and scalability.  
+- **Containerization:** Use **Docker** or **Kubernetes** to simplify deployment and improve scalability.  
+
+## Final Thoughts  
+
+Although I am pleased to have finished the challenge, **time constraints** were my biggest issue. There was a lot more I wanted to implement, but due to my current experience level, I was unable to achieve everything. However, I feel that the project successfully met its core objectives and is structured for future improvements.  
