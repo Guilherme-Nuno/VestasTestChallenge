@@ -1,0 +1,59 @@
+@using Blazorise.Charts
+@using VTC.Shared
+
+<LineChart @ref="chart" TItem="double"/>
+
+@code {
+    private LineChart<double> chart;
+
+    [Parameter]
+    public List<TestResultDTO> TestResults { get; set; } = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await SetupChart();
+        }
+    }
+
+    private async Task SetupChart()
+    {
+        await chart.Clear();
+        
+        var labels = TestResults.Select(r => r.Timestamp.ToString("HH:mm:ss")).ToArray();
+
+        await chart.AddLabelsDatasetsAndUpdate(labels,
+            new LineChartDataset<double>
+            {
+                Label = "Rotation",
+                Data = TestResults.Select(r => (double) r.Rotation).ToList(),
+                BorderColor = "#FF5733",
+                BackgroundColor = "rgba(255, 87, 51, 0.2)",
+                Fill = true
+            },
+            new LineChartDataset<double>
+            {
+                Label = "Stress Level",
+                Data = TestResults.Select(r => r.StressLevel).ToList(),
+                BorderColor = "#33FF57",
+                BackgroundColor = "rgba(51, 255, 87, 0.2)",
+                Fill = true
+            },
+            new LineChartDataset<double>
+            {
+                Label = "Temperature",
+                Data = TestResults.Select(r => r.Temperature).ToList(),
+                BorderColor = "#3357FF",
+                BackgroundColor = "rgba(51, 87, 255, 0.2)",
+                Fill = true
+            });
+
+        await chart.Update();
+    }
+
+    public async Task UpdateChart()
+    {
+        await SetupChart();
+    }
+}

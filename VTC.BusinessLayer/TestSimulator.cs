@@ -1,5 +1,6 @@
 using VestasTestChallenge.Classes;
 using VestasTestChallenge.Interfaces;
+using VTC.Shared;
 
 namespace VestasTestChallenge;
 
@@ -15,20 +16,25 @@ public class TestSimulator : ITestSimulator
         _results = new List<TestResult>();
         _dbConnection =  dbConnection;
     }
-    public async Task<List<TestResult>> StartTest(List<TestStep> steps)
+    public async Task<List<TestResult>> StartTest(List<TestSequenceDTO> steps, Guid testId)
     {
         ArgumentNullException.ThrowIfNull(steps);
         
         // Add test to database
-        var testId = Guid.NewGuid();
         await _dbConnection.AddTestAsync("", testId);
 
         foreach (var step in steps)
         {
+            // Convert TestSequenceDTO to TestStep
+            TestStep testStep = new TestStep(step, testId);
+            
             // Add test sequence to database
-            await _dbConnection.AddTestStepAsync(step.RotationSpeed, step.Duration, testId);
-            SimulateStep(step, testId);
+            await _dbConnection.AddTestStepAsync(testStep.RotationSpeed, testStep.Duration, testId);
+            SimulateStep(testStep, testId);
         }
+        
+        // Add EndTime to test on Database
+        await _dbConnection.UpdateTestEndTimeAsync(testId);
         
         return _results;
     }
@@ -54,15 +60,15 @@ public class TestSimulator : ITestSimulator
 
     private double CalculateStressLevel(int rotationSpeed)
     {
-        var random = new Random().NextDouble() / 8;
+        var random = new Random().NextDouble();
         
-        return rotationSpeed * random / 100;
+        return random * 100;
     }
 
     private double CalculateTemperature(int rotationSpeed)
     {
-        var random = new Random().NextDouble() / 8;
+        var random = new Random().NextDouble();
         
-        return rotationSpeed * random / 250;  
+        return random * 100;  
     }
 }

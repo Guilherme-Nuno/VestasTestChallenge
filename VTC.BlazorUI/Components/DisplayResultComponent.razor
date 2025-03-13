@@ -1,0 +1,15 @@
+@using VTC.Shared
+@if (TestResults.Count > 1)
+{
+    <h3>Test Results of test: @TestId</h3>
+    
+    <ResultChartComponent TestResults="TestResults" />
+    
+    <ResultTableComponent TestResults="TestResults" />
+}
+
+
+@code {
+    [Parameter] public List<TestResultDTO> TestResults { get; set; } = new List<TestResultDTO>();
+    [Parameter] public Guid TestId { get; set; }
+}

@@ -1,16 +1,23 @@
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.SignalR;
 using VTC.Database.Interfaces;
 using VTC.Database.Models;
+using VTC.Shared;
 
 namespace VTC.Database;
 
 public class DatabaseConnection : IDatabaseConnection
 {
     private readonly AppDbContext _context;
-
-    public DatabaseConnection(AppDbContext context)
+    private readonly IHubContext<TestResultHub> _testResultHub;
+    public DatabaseConnection(AppDbContext context,  IHubContext<TestResultHub> testResultHub)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _testResultHub = testResultHub ?? throw new ArgumentNullException(nameof(testResultHub));
+    }
+
+    public async Task SendTestResult(TestResultDTO testResult)
+    {
+        await _testResultHub.Clients.All.SendAsync("SendTestResult", testResult);
     }
     
     public async Task<Test> AddTestAsync(String name, Guid id)
@@ -74,7 +81,15 @@ public class DatabaseConnection : IDatabaseConnection
         
         _context.TestResults.Add(result);
         await _context.SaveChangesAsync();
+
+        await SendTestResult(ConvertTestResultToDto(result));
         
         return result;
+    }
+
+    private TestResultDTO ConvertTestResultToDto(TestResult testResult)
+    {
+        return new TestResultDTO(testResult.TimeStamp, testResult.RotationSpeed, testResult.StressLevel,
+            testResult.Temperature);
     }
 }

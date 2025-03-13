@@ -1,3 +1,5 @@
+using VTC.Shared;
+
 namespace VestasTestChallenge.Classes;
 
 public class TestStep
@@ -13,5 +15,13 @@ public class TestStep
         StepId = stepId;
         RotationSpeed = rotationSpeed;
         Duration = duration;
+    }
+
+    public TestStep(TestSequenceDTO testSequenceDto, Guid testId)
+    {
+        TestId = testId;
+        StepId = Guid.NewGuid();
+        RotationSpeed = testSequenceDto.SetPoint;
+        Duration = testSequenceDto.Duration;
     }
 }

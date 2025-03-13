@@ -1,0 +1,29 @@
+@using VTC.BlazorUI.Classes
+@using VTC.Shared
+@inherits Microsoft.AspNetCore.Components.ComponentBase
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Time Stamp</th>
+        <th>Rotation Speed</th>
+        <th>Stress Level</th>
+        <th>Temperature</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in TestResults)
+        {
+            <tr>
+                <td>@result.Timestamp</td>
+                <td>@result.Rotation</td>
+                <td>@result.StressLevel</td>
+                <td>@result.Temperature</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter] public List<TestResultDTO> TestResults { get; set; } = new List<TestResultDTO>();
+}

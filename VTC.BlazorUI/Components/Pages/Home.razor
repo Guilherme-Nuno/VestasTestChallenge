@@ -1,5 +1,10 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.SignalR
+@using Microsoft.AspNetCore.SignalR.Client
+@using VestasTestChallenge.Interfaces
 @using VTC.BlazorUI.Classes
+@using VTC.Shared
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
 <PageTitle>VTC Test Bench</PageTitle>
@@ -20,28 +25,63 @@
     <button class="btn btn-primary" @onclick="StartTest">Start Test</button>
 </div>
 
+<DisplayResultComponent TestResults="TestResults" TestId="testId"/>
+
 @code {
     private List<TestSequenceStep> TestSequence = new List<TestSequenceStep>();
+    private List<TestResultDTO> TestResults = new List<TestResultDTO>();
+    
+    [Inject] private ITestSimulator TestSimulator { get; set; }
+    [Inject] private IHubContext<TestResultHub> _hubContext { get; set; }
+
+    public Guid testId = Guid.Empty;
+
+    private HubConnection? _hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/testResultHub"))
+            .Build();
+
+        _hubConnection.On<TestResultDTO>("SendTestResult", (testResult) =>
+        {
+            TestResults.Add(testResult);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await _hubConnection.StartAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_hubConnection is not null)
+        {
+            await _hubConnection.DisposeAsync();
+        }
+    }
     
     private void AddRow()
     {
         TestSequence.Add(new TestSequenceStep());
-        Console.WriteLine($"Added step, count is now: {TestSequence.Count}");
-        StateHasChanged();
     }
 
     private void DeleteRow(TestSequenceStep step)
     {
         TestSequence.Remove(step);
-        StateHasChanged();
     }
 
-    private void StartTest()
+    private async Task StartTest()
     {
+        testId = Guid.NewGuid();
+        List<TestSequenceDTO> testSequenceDto = new List<TestSequenceDTO>();
+
         foreach (var step in TestSequence)
         {
-            Console.WriteLine($"Starting test with: {step.SetPoint} and for {step.Duration}");
+            testSequenceDto.Add(new TestSequenceDTO(step.SetPoint, step.Duration));
         }
+        
+        await TestSimulator.StartTest(testSequenceDto, testId);
     }
 
 }

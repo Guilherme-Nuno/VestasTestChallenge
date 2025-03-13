@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VTC.BlazorUI", "VTC.BlazorU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VTC.Database", "VTC.Database\VTC.Database.csproj", "{D34887A0-5FD7-41CE-98EC-67BFF40282EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VTC.Shared", "VTC.Shared\VTC.Shared.csproj", "{7A0BFF55-1FAB-4A7C-855E-EE817898D749}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +33,9 @@ Global
 		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D34887A0-5FD7-41CE-98EC-67BFF40282EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0BFF55-1FAB-4A7C-855E-EE817898D749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0BFF55-1FAB-4A7C-855E-EE817898D749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0BFF55-1FAB-4A7C-855E-EE817898D749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0BFF55-1FAB-4A7C-855E-EE817898D749}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
