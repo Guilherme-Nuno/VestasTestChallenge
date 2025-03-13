@@ -43,5 +43,5 @@ The application allows users to define test sequences, execute them, and visuali
 - **Blazor Server** (UI framework)
 - **SignalR** (Real-time communication)
 - **Blazorise Charts** (Graph rendering)
-- **SQLite** (Planned for database integration)
-- **.NET 8** (Core framework)
+- **SQLite** (Database integration)
+- **.NET 9** (Core framework)
